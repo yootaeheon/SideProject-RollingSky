@@ -45,15 +45,15 @@ public class LYJ_PlayerMove : MonoBehaviour
 
         // 가만히 있어도 항상 앞으로 굴러감
         transform.position += Vector3.forward * MoveSpeed * Time.deltaTime;
-
-        if (Input.GetKey(KeyCode.A))
+        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
         {
             transform.position += Vector3.left * MoveSpeed * Time.deltaTime;
         }
-        else if(Input.GetKey(KeyCode.D))
+        else if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
         {
             transform.position += Vector3.right * MoveSpeed * Time.deltaTime;
         }
+          
 
     }
 

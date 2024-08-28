@@ -714,7 +714,6 @@ GameObject:
   m_Component:
   - component: {fileID: 425831787}
   - component: {fileID: 425831788}
-  - component: {fileID: 425831790}
   m_Layer: 0
   m_Name: LSH_Player
   m_TagString: Untagged
@@ -754,21 +753,7 @@ MonoBehaviour:
   MoveSpeed: 5
   isFloored: 0
   startPosition: {x: 0, y: 0, z: 0}
---- !u!114 &425831790
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 425831785}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ddaf4ab4ed3b4e948b26da6398b781ec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 5
-  jumpForce: 5
-  rb: {fileID: 0}
+  playerTransform: {fileID: 0}
 --- !u!1 &463847849
 GameObject:
   m_ObjectHideFlags: 0
