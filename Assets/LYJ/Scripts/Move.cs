@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Move : MonoBehaviour
 {
-    [SerializeField] float moveSpeed;
-    [SerializeField] float rotateSpeed;
-    [SerializeField] float jumpForce;
+    [SerializeField] float moveSpeed; //움직임속도
+    //[SerializeField] float rotateSpeed; //회전속도
+    [SerializeField] float jumpForce; //점프할 때 드는 힘
     [SerializeField] Rigidbody rb;
 
     private bool isFloored = true; //바닥에 있는지
@@ -16,6 +16,7 @@ public class Move : MonoBehaviour
     private void Start()
     {
         //Rigidbody 컴포넌트를 현재 게임 오브젝트에서 가져옴
+        //드래그앤드롭하지 않아도 알아서 가져와짐
         rb = GetComponent<Rigidbody>();
         startPosition = transform.position;
     }
@@ -49,7 +50,8 @@ public class Move : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        // 바닥에 닿았을 때만 isFloored를 true
+        //점프를 한 번만 할 수 있도록 제어
+        //바닥에 닿았을 때만 isFloored를 true
         //collision.contacts[0]: https://velog.io/@ocx/Collision%EA%B3%BC-Contacts 참고
         //contacts[0]은 충돌한 바닥의 첫 번째 접촉 지점
         if (collision.contacts[0].normal == Vector3.up)
