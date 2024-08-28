@@ -45,32 +45,30 @@ public class LYJ_PlayerMove : MonoBehaviour
 
         // 가만히 있어도 항상 앞으로 굴러감
         transform.position += Vector3.forward * MoveSpeed * Time.deltaTime;
+<<<<<<< HEAD
+
+=======
+>>>>>>> 92cc4b5abff125e4cf897ca7fda5c89d3163a98c
         if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
         {
             transform.position += Vector3.left * MoveSpeed * Time.deltaTime;
         }
+<<<<<<< HEAD
         else if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
+=======
+        else if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
+>>>>>>> 92cc4b5abff125e4cf897ca7fda5c89d3163a98c
         {
             transform.position += Vector3.right * MoveSpeed * Time.deltaTime;
         }
-          
+
 
     }
 
 
 
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        //점프를 한 번만 할 수 있도록 제어
-        //바닥에 닿았을 때만 isFloored를 true
-        //collision.contacts[0]: https://velog.io/@ocx/Collision%EA%B3%BC-Contacts 참고
-        //contacts[0]은 충돌한 바닥의 첫 번째 접촉 지점
-        if (collision.contacts[0].normal == Vector3.up)
-        {
-            isFloored = true;
-        }
-    }
+
 
 
     //-----------------------------------------------------
