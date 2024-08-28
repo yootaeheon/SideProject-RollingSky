@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class LSH_BallJump : MonoBehaviour
 {
+
     [SerializeField] bool isFloored;
     [SerializeField] float jumpPower = 5f;
     [SerializeField] Rigidbody ballRigidbody;
+
 
     void Start()
     {

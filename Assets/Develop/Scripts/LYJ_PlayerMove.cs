@@ -9,7 +9,6 @@ public class LYJ_PlayerMove : MonoBehaviour
 
     [SerializeField] float MoveSpeed;
 
-    [SerializeField] bool isFloored;         //바닥에 닿았는지 여부.  T 닿음,  F 떨어짐
     [SerializeField] Vector3 startPosition;  //플레이어의 처음 위치
 
     [SerializeField] Transform playerTransform;
@@ -20,7 +19,6 @@ public class LYJ_PlayerMove : MonoBehaviour
 
     void Start()
     {
-        isFloored = true;
         startPosition = transform.position;
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
     }
@@ -45,29 +43,19 @@ public class LYJ_PlayerMove : MonoBehaviour
 
         // 가만히 있어도 항상 앞으로 굴러감
         transform.position += Vector3.forward * MoveSpeed * Time.deltaTime;
-<<<<<<< HEAD
 
-=======
->>>>>>> 92cc4b5abff125e4cf897ca7fda5c89d3163a98c
         if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
         {
             transform.position += Vector3.left * MoveSpeed * Time.deltaTime;
         }
-<<<<<<< HEAD
+
         else if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
-=======
-        else if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
->>>>>>> 92cc4b5abff125e4cf897ca7fda5c89d3163a98c
         {
             transform.position += Vector3.right * MoveSpeed * Time.deltaTime;
         }
 
 
     }
-
-
-
-
 
 
 
@@ -83,7 +71,7 @@ public class LYJ_PlayerMove : MonoBehaviour
 
     public void Die()
     {
-
+        //BSM_TrapCube에서 링크됨
     }
 
 }

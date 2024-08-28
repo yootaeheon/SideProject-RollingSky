@@ -751,9 +751,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MoveSpeed: 5
-  isFloored: 0
   startPosition: {x: 0, y: 0, z: 0}
-  playerTransform: {fileID: 0}
+  playerTransform: {fileID: 425831787}
 --- !u!1 &463847849
 GameObject:
   m_ObjectHideFlags: 0
@@ -5062,7 +5061,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a30b3f5fdc707334a9df28b24634616a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpPower: 10
+  isFloored: 0
+  jumpPower: 5
   ballRigidbody: {fileID: 1908305387}
 --- !u!1 &1924808252
 GameObject:
