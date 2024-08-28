@@ -9,11 +9,15 @@ public class Move : MonoBehaviour
     [SerializeField] float jumpForce;
     [SerializeField] Rigidbody rb;
 
-    private bool isFloored = true;
+    private bool isFloored = true; //바닥에 있는지
+
+    private Vector3 startPosition; //플레이어의 처음 위치
 
     private void Start()
     {
+        //Rigidbody 컴포넌트를 현재 게임 오브젝트에서 가져옴
         rb = GetComponent<Rigidbody>();
+        startPosition = transform.position;
     }
 
     private void Update()
@@ -35,6 +39,12 @@ public class Move : MonoBehaviour
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             isFloored = false; // 점프 후에는 지면에서 떨어짐
         }
+
+        //만약 공의 y방향 값이 -5 이하이면 위치 초기화
+        if(transform.position.y <= -5)
+        {
+            ResetPosition();
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -46,5 +56,9 @@ public class Move : MonoBehaviour
         {
             isFloored = true;
         }
+    }
+    private void ResetPosition()
+    {
+        transform.position = startPosition;
     }
 }
