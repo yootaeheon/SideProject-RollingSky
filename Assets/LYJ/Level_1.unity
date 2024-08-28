@@ -236,7 +236,7 @@ MonoBehaviour:
   moveSpeed: 5
   rotateSpeed: 2
   jumpForce: 5
-  rb: {fileID: 23392586}
+  rb: {fileID: 0}
 --- !u!54 &23392586
 Rigidbody:
   m_ObjectHideFlags: 0
