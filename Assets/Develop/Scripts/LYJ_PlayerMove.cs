@@ -12,7 +12,7 @@ public class LYJ_PlayerMove : MonoBehaviour
     [SerializeField] bool isFloored;         //바닥에 닿았는지 여부.  T 닿음,  F 떨어짐
     [SerializeField] Vector3 startPosition;  //플레이어의 처음 위치
 
-
+    [SerializeField] Transform playerTransform;
 
     //-----------------------------------------------------
     //----------------- 유니티 메시지 함수 -----------------
@@ -22,7 +22,7 @@ public class LYJ_PlayerMove : MonoBehaviour
     {
         isFloored = true;
         startPosition = transform.position;
-
+        playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
 
@@ -30,7 +30,7 @@ public class LYJ_PlayerMove : MonoBehaviour
     {
 
         //만약 공의 y방향 값이 -5 이하이면 위치 초기화
-        if (transform.position.y <= -5)
+        if (playerTransform.position.y <= -5)
         {
             ResetPosition();
         }
@@ -80,6 +80,7 @@ public class LYJ_PlayerMove : MonoBehaviour
     private void ResetPosition()
     {
         transform.position = startPosition;
+        playerTransform.position = startPosition;
     }
 
     public void Die()
