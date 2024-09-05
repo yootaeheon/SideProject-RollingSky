@@ -20,7 +20,7 @@ public class LSH_BallJump : MonoBehaviour
 
     }
 
-    void FixedUpdate()
+    void Update()
     {
         // 스페이스바를 누르면 물리적인 힘에 의해 점프함
         if (Input.GetKeyDown(KeyCode.Space) && isFloored == true)
