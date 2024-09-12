@@ -1,63 +1,60 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class BumperTrap : MonoBehaviour
 {
+    
+    [Header("Trap Transform")]
+    [SerializeField] private Transform bumperOne;
+    [SerializeField] private Transform bumperTwo;
+    [SerializeField] private Transform bumperThree;
+
+    [Header("Ray Distance")]
+    [SerializeField] private float distance;
+
+    
     private Transform player;
+    private Animator animator;
 
-    private Coroutine watch;
-    private WaitForSeconds watchWait;
-    private bool isGrowth = false;
-
+    private BumperTriggerCheck playerCheck;
+    private bool isCheck;
     private void Awake()
     {
-        watchWait = new WaitForSeconds(0.5f);
+  
+        animator = GetComponent<Animator>();
     }
 
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
+        playerCheck = GetComponentInChildren<BumperTriggerCheck>();
     }
 
 
     void Update()
     {
-        PlayerWatch(); 
+        PlayerWatch();
     }
+
 
     public void PlayerWatch()
-    {
-        Debug.DrawRay(transform.position, player.position * 5f, Color.red);
-
-        if (Physics.Raycast(transform.position, player.position, out RaycastHit hit, 5f))
-        {
-            if(hit.collider.tag == "Player")
-            {
-                watch = StartCoroutine(ScaleCoroutine());
-            }
-        }
-
-        if (watch != null && isGrowth)
-        {
-            StopCoroutine(watch);
-            watch = null;
-
-        }
-
+    { 
+        isCheck = playerCheck.PlayerCheck();
+ 
+        animator.SetBool("isCheck", isCheck); 
     }
 
-
-    public IEnumerator ScaleCoroutine()
+    private void OnCollisionEnter(Collision collision)
     {
-        //가장 안쪽 블록 상승
-        yield return watchWait;
-
-        //두 번째 블록 상승
-        yield return watchWait;
-
-        //세 번째 블록 상승 
-        isGrowth = true;
+        if (collision.gameObject.tag == "Player")
+        {
+            //게임 종료
+            Debug.Log("플레이어 사망");
+        }
     }
 
+ 
 }

@@ -19,12 +19,14 @@ public class HammerTrap : MonoBehaviour
         hammerRotate.transform.Rotate(Vector3.up, rotSpeed * Time.deltaTime);
     }
 
-    public void OnCollisionEnter(Collision collision)
+
+    private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.tag == "Player")
+        if (collision.gameObject.tag == "Player")
         {
             //게임 종료
             Debug.Log("플레이어 사망");
-        } 
-    } 
+        }
+    }
+
 }
