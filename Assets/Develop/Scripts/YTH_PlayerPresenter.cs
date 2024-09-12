@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class PlayerPresenter : MonoBehaviour
+public class YTH_PlayerPresenter : MonoBehaviour
 {
-    [SerializeField] PlayerModel playerModel;
+    [SerializeField] YTH_PlayerModel playerModel;
 
     [SerializeField] TextMeshProUGUI stageGemText; //TextMeshPro·Î text »ý¼º
     [SerializeField] TextMeshProUGUI totalGemText;

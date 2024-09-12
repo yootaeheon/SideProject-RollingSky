@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SoundManager : MonoBehaviour
+public class YTH_SoundManager : MonoBehaviour
 {
-    public static SoundManager Instance { get; private set; }
+    public static YTH_SoundManager Instance { get; private set; }
 
     [SerializeField] AudioSource bgm;
     [SerializeField] AudioSource sfx;
@@ -23,7 +23,7 @@ public class SoundManager : MonoBehaviour
 
     public void PlayBGM(AudioSource clip)
     {
-        bgm.clip = clip;
+        //bgm.clip = clip;
         bgm.Play();
     }
 
@@ -53,5 +53,4 @@ public class SoundManager : MonoBehaviour
     {
         sfx.PlayOneShot(clip); //음원파일 동시에 재생
     }
-}
 }

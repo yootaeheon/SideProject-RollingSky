@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class BumperTrap : MonoBehaviour
+public class BSM_BumperTrap : MonoBehaviour
 {
 
     [Header("Ray Distance")]
@@ -14,7 +14,7 @@ public class BumperTrap : MonoBehaviour
     private Transform player;
     private Animator animator;
 
-    private BumperTriggerCheck playerCheck;
+    private BSM_BumperTriggerCheck playerCheck;
     private bool isCheck;
     private void Awake()
     {
@@ -25,7 +25,7 @@ public class BumperTrap : MonoBehaviour
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
-        playerCheck = GetComponentInChildren<BumperTriggerCheck>();
+        playerCheck = GetComponentInChildren<BSM_BumperTriggerCheck>();
     }
 
 

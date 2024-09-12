@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class SpeedUpItem : MonoBehaviour
+public class LYJ_SpeedUpItem : MonoBehaviour
 {
     void OnTriggerEnter(Collider other)
     {

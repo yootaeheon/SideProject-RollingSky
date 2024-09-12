@@ -666,7 +666,7 @@ GameObject:
   - component: {fileID: 3599572078335265547}
   - component: {fileID: 3599572078335265540}
   m_Layer: 6
-  m_Name: BumperTrap
+  m_Name: BSM_BumperTrap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

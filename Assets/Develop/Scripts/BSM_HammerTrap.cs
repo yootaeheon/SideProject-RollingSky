@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HammerTrap : MonoBehaviour
+public class BSM_HammerTrap : MonoBehaviour
 {
     [SerializeField] private Transform hammerRotate;
     [SerializeField] private float rotSpeed;

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class PlayerModel : MonoBehaviour
+public class YTH_PlayerModel : MonoBehaviour
 {
     [SerializeField] int stageGem;
     public int StageGem { get { return stageGem; } set { stageGem = value; OnStageGemChanged?.Invoke(stageGem); } }
@@ -11,5 +11,5 @@ public class PlayerModel : MonoBehaviour
 
     [SerializeField] int totalGem;
     public int TotalGem { get { return totalGem; } set { totalGem = value; OnTotalGemChanged?.Invoke(totalGem); } }
-    public UnityAction OnTotalGemChanged;
+    public UnityAction<int> OnTotalGemChanged;
 }

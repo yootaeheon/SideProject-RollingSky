@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEditor.UIElements;
 using UnityEngine;
 
-public class AirTrap : MonoBehaviour
+public class BSM_AirTrap : MonoBehaviour
 {
     [Header("Propeller")]
     [SerializeField] private Transform propeller;
