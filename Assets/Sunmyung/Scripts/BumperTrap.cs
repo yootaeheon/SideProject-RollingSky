@@ -6,11 +6,6 @@ using UnityEngine.UIElements;
 
 public class BumperTrap : MonoBehaviour
 {
-    
-    [Header("Trap Transform")]
-    [SerializeField] private Transform bumperOne;
-    [SerializeField] private Transform bumperTwo;
-    [SerializeField] private Transform bumperThree;
 
     [Header("Ray Distance")]
     [SerializeField] private float distance;
@@ -43,7 +38,7 @@ public class BumperTrap : MonoBehaviour
     public void PlayerWatch()
     { 
         isCheck = playerCheck.PlayerCheck();
- 
+        
         animator.SetBool("isCheck", isCheck); 
     }
 
