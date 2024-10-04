@@ -12,4 +12,5 @@ public class YTH_PlayerModel : MonoBehaviour
     [SerializeField] int totalGem;
     public int TotalGem { get { return totalGem; } set { totalGem = value; OnTotalGemChanged?.Invoke(totalGem); } }
     public UnityAction<int> OnTotalGemChanged;
+
 }
