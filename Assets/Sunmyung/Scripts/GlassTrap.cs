@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 using UnityEngine;
 
 public class GlassTrap : MonoBehaviour
 {
+    [Header("Rigidbody Drag")]
+    [SerializeField] float drag; 
 
     private Coroutine timer;
     private WaitForSeconds wait;
@@ -11,12 +14,23 @@ public class GlassTrap : MonoBehaviour
 
     private void Awake()
     {
-        wait = new WaitForSeconds(30f);
+        wait = new WaitForSeconds(1.5f);
         rb = GetComponent<Rigidbody>();
+
+        rb.drag = drag; 
+    }
+
+    private void OnDestroy()
+    {
+        if(timer != null)
+        {
+            StopCoroutine(timer);
+        }
+        
     }
 
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnCollisionExit(Collision collision)
     {
         if(collision.gameObject.tag == "Player")
         {
@@ -26,11 +40,11 @@ public class GlassTrap : MonoBehaviour
  
 
     public IEnumerator TimerCoroutine()
-    { 
+    {
+        rb.constraints = RigidbodyConstraints.None;
         yield return wait;
-        rb.useGravity = true;
 
-        yield return wait;
+        
         Destroy(gameObject);
 
     }
