@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class JumpTile : MonoBehaviour
+public class BSM_JumpTile : MonoBehaviour
 {
     [SerializeField] private float jumpPower;
 

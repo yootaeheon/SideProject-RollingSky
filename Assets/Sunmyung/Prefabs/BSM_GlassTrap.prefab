@@ -403,7 +403,7 @@ GameObject:
   - component: {fileID: 5732024644404729081}
   - component: {fileID: 5732024644404728966}
   m_Layer: 6
-  m_Name: GlassTrap
+  m_Name: BSM_GlassTrap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

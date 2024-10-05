@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MoveTrap : MonoBehaviour
+public class BSM_MoveTrap : MonoBehaviour
 {
 
     public enum Dir { Left, Right, Forward, Back }

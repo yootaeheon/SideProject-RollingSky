@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using UnityEngine;
 
-public class GlassTrap : MonoBehaviour
+public class BSM_GlassTrap : MonoBehaviour
 {
     [Header("Rigidbody Drag")]
     [SerializeField] float drag; 

@@ -204,7 +204,7 @@ GameObject:
   m_Component:
   - component: {fileID: 933280373012626666}
   m_Layer: 0
-  m_Name: MoveTrap
+  m_Name: BSM_MoveTrap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
