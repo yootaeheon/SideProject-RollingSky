@@ -9,16 +9,11 @@ public class LYJ_PlayerMove : MonoBehaviour
 
     [SerializeField] float MoveSpeed;
 
-    [SerializeField] float SpeedBoost; //부스트 속도 증가량
-
-    [SerializeField] float SpeedBoostTime; //속도 증가 지속 시간
-
     [SerializeField] Vector3 startPosition;  //플레이어의 처음 위치
 
     [SerializeField] Transform playerTransform;
 
-    private bool isSpeedBoosted = false; //현재 부스트가 적용 중인가?
-    private float originalMoveSpeed; //부스트 적용 전 (원래 이동 속도)를 저장
+    private bool isReversed = false;  //좌우 이동 반전 상태를 저장
 
     //-----------------------------------------------------
     //----------------- 유니티 메시지 함수 -----------------
@@ -28,7 +23,6 @@ public class LYJ_PlayerMove : MonoBehaviour
     {
         startPosition = transform.position;
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
-        originalMoveSpeed = MoveSpeed; //처음엔 원래 이동 속도 저장하여 사용
     }
 
 
@@ -48,21 +42,24 @@ public class LYJ_PlayerMove : MonoBehaviour
             return;
 
         }
-
-        //isSpeedBoosted가 true이면 MoveSpeed에 SpeedBoost 곱한 속도로 이동, false이면 기본 속도로 이동
-        float currentSpeed = isSpeedBoosted ? MoveSpeed * SpeedBoost : MoveSpeed;
         
         //앞으로 계속 공을 굴림
-        transform.position += Vector3.forward * currentSpeed * Time.deltaTime;
+        transform.position += Vector3.forward * MoveSpeed * Time.deltaTime;
 
         if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
         {
-            transform.position += Vector3.left * MoveSpeed * Time.deltaTime;
+            if (isReversed)
+                transform.position += Vector3.right * MoveSpeed * Time.deltaTime; //방향 반전
+            else
+                transform.position += Vector3.left * MoveSpeed * Time.deltaTime;
         }
 
         else if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
         {
-            transform.position += Vector3.right * MoveSpeed * Time.deltaTime;
+            if (isReversed)
+                transform.position += Vector3.left * MoveSpeed * Time.deltaTime; //방향 반전
+            else
+                transform.position += Vector3.right * MoveSpeed * Time.deltaTime;
         }
 
 
@@ -85,28 +82,43 @@ public class LYJ_PlayerMove : MonoBehaviour
         //BSM_TrapCube에서 링크됨
     }
 
-    //속도 부스터 적용하는 함수
-    public void ApplySpeedBoost()
+
+    //좌우 반전을 설정하는 함수 추가
+    public void ReverseControls(bool reverse)
     {
-        //속도 부스트가 적용되어 있지 않은 상태면
-        if (!isSpeedBoosted)
+        isReversed = reverse;
+    }
+
+    //이동 속도 설정 함수
+    public void SetMoveSpeed(float newSpeed)
+    {
+        MoveSpeed = newSpeed;
+    }
+
+    public float GetMoveSpeed()
+    {
+        return MoveSpeed;
+    }
+
+    //쉴드 효과를 적용하는 코루틴
+    public IEnumerator ActivateShield()
+    {
+        Renderer playerRenderer = GetComponent<Renderer>();
+
+        if (playerRenderer != null)
         {
-            //코루틴 시작
-            StartCoroutine(SpeedBoostCoroutine());
+            Color originalColor = playerRenderer.material.color;
+
+            //플레이어를 반투명하게 변경
+            playerRenderer.material.color = new Color(originalColor.r, originalColor.g, originalColor.b, 0.4f);
+            Debug.Log("쉴드 효과 적용");
+
+            //5초 대기
+            yield return new WaitForSeconds(5f);
+
+            //원래 색상으로 복원
+            playerRenderer.material.color = originalColor;
+            Debug.Log("쉴드 효과 해제");
         }
     }
-
-    //정해진 시간 동안 속도 부스트를 적용하는 코루틴
-    private IEnumerator SpeedBoostCoroutine()
-    {
-        //시작하면 부스트 상태를 true로 설정하고
-        isSpeedBoosted = true;
-
-        //지정한 SpeedBoostTime만큼 적용되었다가
-        yield return new WaitForSeconds(SpeedBoostTime);
-        
-        //부스트 상태를 다시 false로 설정
-        isSpeedBoosted = false;
-    }
-
 }
