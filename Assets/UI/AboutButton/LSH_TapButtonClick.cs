@@ -25,7 +25,7 @@ public class LSH_TapButtonClick : MonoBehaviour
     }
 
     // 하단 탭에서 1번째 버튼을 누르면 메뉴1의 이미지로 전환됨
-    public void OnClickBtn1()
+    public void OnClickTapBtn1()
     {
         menu1_Img.SetActive(true);
         menu2_Img.SetActive(false);
@@ -35,7 +35,7 @@ public class LSH_TapButtonClick : MonoBehaviour
     }
 
     // 하단 탭에서 2번째 버튼을 누르면 메뉴2의 이미지로 전환됨
-    public void OnClickBtn2()
+    public void OnClickTapBtn2()
     {
         menu1_Img.SetActive(false);
         menu2_Img.SetActive(true);
@@ -45,7 +45,7 @@ public class LSH_TapButtonClick : MonoBehaviour
     }
 
     // 하단 탭에서 3번째 버튼을 누르면 메뉴3의 이미지로 전환됨
-    public void OnClickBtn3()
+    public void OnClickTapBtn3()
     {
         menu1_Img.SetActive(false);
         menu2_Img.SetActive(false);
@@ -55,7 +55,7 @@ public class LSH_TapButtonClick : MonoBehaviour
     }
 
     // 하단 탭에서 4번째 버튼을 누르면 메뉴4의 이미지로 전환됨
-    public void OnClickBtn4()
+    public void OnClickTapBtn4()
     {
         menu1_Img.SetActive(false);
         menu2_Img.SetActive(false);
@@ -65,7 +65,7 @@ public class LSH_TapButtonClick : MonoBehaviour
     }
 
     // 하단 탭에서 5번째 버튼을 누르면 메뉴5의 이미지로 전환됨
-    public void OnClickBtn5()
+    public void OnClickTapBtn5()
     {
         menu1_Img.SetActive(false);
         menu2_Img.SetActive(false);

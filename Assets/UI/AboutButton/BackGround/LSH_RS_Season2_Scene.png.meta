@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 21188c67135b1264ba437d10ebc4aa7e
+guid: f2dde6e60be291f4c87ffe2debf6b6c9
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -103,18 +103,40 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: LSH_RS_Season2_Scene_0
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 58
+        width: 764
+        height: 1418
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ec48c9057c427c948a831169c38918d4
+      internalID: 214750061
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      LSH_RS_Season2_Scene_0: 214750061
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
