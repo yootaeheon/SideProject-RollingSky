@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class SceneChanger : MonoBehaviour
+public class LSH_LoadingMenu : MonoBehaviour
 {
     [SerializeField] Image loadImg;
     [SerializeField] Slider loadSli;

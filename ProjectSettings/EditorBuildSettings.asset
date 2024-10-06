@@ -6,12 +6,15 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/UI/LSH_LoadingScene.unity
+    path: Assets/UI/AboutScene/LSH_LoadingMenu.unity
     guid: ea97608dcfd0ba24a9aa7bc24a9fd9cf
   - enabled: 1
-    path: Assets/UI/LSH_MenuScene.unity
+    path: Assets/UI/AboutScene/LSH_Scene_Menu.unity
     guid: c275556fbb49e60408baccab67a4e79e
   - enabled: 1
-    path: Assets/UI/LSH_GameScene.unity
+    path: Assets/UI/AboutScene/LSH_LoadingGame.unity
+    guid: fec9d116b9a6c90439fa80bfa02ced2d
+  - enabled: 1
+    path: Assets/UI/AboutScene/LSH_Scene_Game.unity
     guid: 0046d6ab5fdacfe4e8a288e2a1073979
   m_configObjects: {}
