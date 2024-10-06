@@ -103,18 +103,172 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: LSH_RS_Season1_Scene_0
+      rect:
+        serializedVersion: 2
+        x: 454
+        y: 5074
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fbe122d4c8e31f040b116230b26383b6
+      internalID: -403597812
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LSH_RS_Season1_Scene_1
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 4195
+        width: 873
+        height: 700
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cc0a9c303f3e6a64fa94280ad83024fe
+      internalID: -1999943471
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LSH_RS_Season1_Scene_2
+      rect:
+        serializedVersion: 2
+        x: 109
+        y: 3379
+        width: 862
+        height: 700
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 86f586ac7af23a8419a9962aeb9bd169
+      internalID: 957769012
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LSH_RS_Season1_Scene_3
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 2562
+        width: 862
+        height: 700
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bf89bde5fe9c3474ab76b725eb13cbb4
+      internalID: -699351140
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LSH_RS_Season1_Scene_4
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 1750
+        width: 859
+        height: 700
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 168d7625c2464db4a94edfb6ec59b85b
+      internalID: 895243557
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LSH_RS_Season1_Scene_5
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 936
+        width: 862
+        height: 700
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 992dae2d9a8d9df478efba4a1dcbf670
+      internalID: -1335703442
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LSH_RS_Season1_Scene_6
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 69
+        width: 856
+        height: 706
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 28a731a83f93a134990a7effb2f883ad
+      internalID: -699322633
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: ca2388e7a8ff9be4dbabd36f9f038ee5
     internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      LSH_RS_Season1_Scene_0: -403597812
+      LSH_RS_Season1_Scene_1: -1999943471
+      LSH_RS_Season1_Scene_2: 957769012
+      LSH_RS_Season1_Scene_3: -699351140
+      LSH_RS_Season1_Scene_4: 895243557
+      LSH_RS_Season1_Scene_5: -1335703442
+      LSH_RS_Season1_Scene_6: -699322633
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
