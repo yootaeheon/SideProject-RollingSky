@@ -103,18 +103,106 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: LSH_RS_Home1_Scene_0
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 600
+        width: 941
+        height: 270
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7f80b1fa0aa2116438f3350c3d862bcb
+      internalID: -58680465
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LSH_RS_Home1_Scene_1
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 68
+        width: 300
+        height: 510
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c631f575865311c46967ea0cd665a371
+      internalID: -1174377465
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LSH_RS_Home1_Scene_2
+      rect:
+        serializedVersion: 2
+        x: 392
+        y: 66
+        width: 300
+        height: 510
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d49a6882712c1f04fbe0b42f8d2cfef7
+      internalID: -149563043
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LSH_RS_Home1_Scene_3
+      rect:
+        serializedVersion: 2
+        x: 713
+        y: 65
+        width: 300
+        height: 510
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 19227ef2d23fbac42a45573e6f5a6f24
+      internalID: -1826783588
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 27646eff2f5f4d74f9aa03a3d593a098
     internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      LSH_RS_Home1_Scene_0: -58680465
+      LSH_RS_Home1_Scene_1: -1174377465
+      LSH_RS_Home1_Scene_2: -149563043
+      LSH_RS_Home1_Scene_3: -1826783588
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
