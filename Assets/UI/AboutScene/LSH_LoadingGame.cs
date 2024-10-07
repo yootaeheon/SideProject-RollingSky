@@ -58,12 +58,12 @@ public class LSH_LoadingGame : MonoBehaviour
             if (oper.progress < 0.9f)
             {
                 //아직 로딩중...
-                Debug.Log($"아직 로딩중, 진척도 = {oper.progress}");
+                Debug.Log($"아직 로딩중, 진척도: {oper.progress}");
             }
             else
             {
                 //0.9가 넘어갔다면, 로딩이 다 됐다고 생각해도 무방함
-                Debug.Log("로딩 완료됨");
+                Debug.Log($"{sceneName}씬의 로딩이 완료됨.");
 
                 break;
 
@@ -72,7 +72,7 @@ public class LSH_LoadingGame : MonoBehaviour
         }
 
 
-        Debug.Log("로딩바 억지로 천천히 채우는중. \n 다 채워지면 알아서 넘어갑니다!");
+        Debug.Log($"로딩바 억지로 천천히 채우는중. \n 다 채워지면 알아서 {sceneName}씬으로 넘어갑니다!");
         float time = 0f;
         while (time < 100f)
         {
