@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 //이거 연결하고 커밋 ㄱ
 
-public class LSH_TapButtonClick : MonoBehaviour
+public class LSH_TapMenuClick : MonoBehaviour
 {
     //최상위 캔버스에 컴포넌트로 넣어줄 스크립트
 
