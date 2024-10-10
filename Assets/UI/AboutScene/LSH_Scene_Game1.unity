@@ -299,9 +299,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 75388321}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b0858fbc7a9eb41befd27c8e4ec234, type: 3}
+  m_Script: {fileID: 11500000, guid: e1183aa6ade98eb4bbb6a6931b9ae7e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isDead: 0
 --- !u!1 &135002481
 GameObject:
   m_ObjectHideFlags: 0
@@ -745,7 +746,7 @@ GameObject:
   - component: {fileID: 399454088}
   - component: {fileID: 399454087}
   m_Layer: 5
-  m_Name: Scene_GameOver (Basic)
+  m_Name: Game1_GameOver (Basic)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1764,12 +1765,12 @@ GameObject:
   - component: {fileID: 755706426}
   - component: {fileID: 755706425}
   m_Layer: 5
-  m_Name: Scene_StartNotYet (Basic)
+  m_Name: Game1_Ready (Basic)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &755706424
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2500,7 +2501,7 @@ GameObject:
   - component: {fileID: 1317938734}
   - component: {fileID: 1317938733}
   m_Layer: 5
-  m_Name: Scene_Pause (Basic)
+  m_Name: Game1_Pause (Basic)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3974,12 +3975,12 @@ GameObject:
   - component: {fileID: 2038680875}
   - component: {fileID: 2038680874}
   m_Layer: 5
-  m_Name: Scene_StartAlready (Basic)
+  m_Name: Game1_Start (Basic)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2038680873
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4051,7 +4052,7 @@ GameObject:
   - component: {fileID: 2092724810}
   - component: {fileID: 2092724809}
   m_Layer: 5
-  m_Name: Scene_Clear (Basic)
+  m_Name: Game1_Clear (Basic)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
