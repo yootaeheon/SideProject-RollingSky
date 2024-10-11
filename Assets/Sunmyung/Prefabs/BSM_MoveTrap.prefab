@@ -339,9 +339,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45fda489170af1b48840f393f15fa781, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  curDir: 1
+  curDir: 2
   parent: {fileID: 933280373012626666}
-  moveSpeed: 0
+  moveSpeed: 5
 --- !u!1 &6147389670129426519
 GameObject:
   m_ObjectHideFlags: 0

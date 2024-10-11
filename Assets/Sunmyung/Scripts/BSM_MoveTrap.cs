@@ -10,6 +10,9 @@ public class BSM_MoveTrap : MonoBehaviour
     [SerializeField] private Transform parent;
     [SerializeField] private float moveSpeed;
 
+    [Header("이동 블록 움직이는 시간")]
+    [SerializeField] private float stopTime;
+
     private bool isStop;
 
     private Coroutine moveRoutine;
@@ -39,42 +42,49 @@ public class BSM_MoveTrap : MonoBehaviour
     }
 
 
+    private void Update()
+    {
+        if (isStop && moveRoutine == null)
+        {
+            moveRoutine = StartCoroutine(MoveCoroutine());
+        }
+
+
+        if (moveRoutine != null && !isStop)
+        {
+            StopCoroutine(moveRoutine); 
+        }
+
+
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Player")
         {
-            isStop = false;
-            moveRoutine = StartCoroutine(MoveCoroutine());
-        }
-
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.tag == "Player")
-        {
-            isStop = true;
-
-            if (moveRoutine != null)
-            {
-                StopCoroutine(MoveCoroutine());
-            }
-
+            isStop = true; 
         }
 
     }
 
 
 
+  
     public IEnumerator MoveCoroutine()
     {
-        while (!isStop)
+        float elapsedTime = 0f;
+
+        while (elapsedTime < stopTime)
         {
+            elapsedTime += Time.deltaTime; 
+
             parent.transform.Translate(dirVector * moveSpeed * Time.deltaTime);
 
-            yield return null;
+            yield return null; 
         }
 
+        isStop = false;
+        yield break;
     }
 
 
