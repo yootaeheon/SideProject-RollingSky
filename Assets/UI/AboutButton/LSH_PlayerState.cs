@@ -182,6 +182,16 @@ public class LSH_PlayerState : MonoBehaviour
 
     }
 
+    public void ReadyStart()
+    {
+        playerState = PlayerState.Running;
+    }
+
+    public void ClickPause()
+    {
+        playerState = PlayerState.Pause;
+    }
+
     public void ClickUnPause()
     {
         playerState = PlayerState.UnPause;
