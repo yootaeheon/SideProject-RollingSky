@@ -1,6 +1,7 @@
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using static Unity.Burst.Intrinsics.X86.Avx;
 
 public class LSH_PlayerState : MonoBehaviour
 {
@@ -85,6 +86,7 @@ public class LSH_PlayerState : MonoBehaviour
                 GameReadyUI.SetActive(true);
                 GameRunningUI.SetActive(false);
                 GamePauseUI.SetActive(false);
+                GameUnPauseTMP.text = "";
                 GameClearUI.SetActive(false);
                 GameoverUI.SetActive(false);
                 Time.timeScale = 0f;
@@ -93,8 +95,7 @@ public class LSH_PlayerState : MonoBehaviour
             case PlayerState.Running:
                 //게임 시작 시간에 따른 퍼센트 정보가 뜸 (0 ~ 100 정수 단위로 오른쪽 위에 표시됨)
                 GameReadyUI.SetActive(false);
-                GameRunningUI.SetActive(true);
-                GameUnPauseTMP.enabled = false;
+                GameRunningUI.SetActive(true);                
                 //GameprogressTMP.text = ""; 
                 //Debug.LogWarning("싱글톤에서 게임 퍼센테이지 연동 부탁드립니다!");
                 Time.timeScale = 1f;
@@ -108,7 +109,7 @@ public class LSH_PlayerState : MonoBehaviour
 
             case PlayerState.UnPause:
                 //퍼즈 버튼을 눌렀다가 게임을 재개한 경우입니다. 3초짜리 카운트다운이 표시됩니다. (소수점 첫째자리까지)
-                GamePauseUI.SetActive(false);
+                GamePauseUI.SetActive(false);                
                 isUnPause = true; //112번째줄로 이어집니다
                 break;
 
@@ -151,16 +152,16 @@ public class LSH_PlayerState : MonoBehaviour
 
 
         //일시정지 해제시 코루틴
-        if (playerState == PlayerState.Pause && isUnPause == true)
+        if (isUnPause == true)
         {
-            Time.timeScale = 1f;
-            playerState = PlayerState.Running;
-            GameUnPauseTMP.enabled = true;
-            unPauseRoutine = StartCoroutine(CountDown(3f));
+            unPauseRoutine = StartCoroutine(CountDown(3.0f));
         }
         else if (unPauseRoutine != null && isUnPause == false)
         {
+
+            //카운트다운 종료 후 게임 재개
             StopCoroutine(unPauseRoutine);
+
         }
 
 
@@ -169,7 +170,7 @@ public class LSH_PlayerState : MonoBehaviour
         if (isMooJeok == true)
         {
             Time.timeScale = 1f;
-            BuHwalRoutine = StartCoroutine(ReStartRoutine(3f));
+            BuHwalRoutine = StartCoroutine(ReStartRoutine(3.0f));
 
         }
         else if (BuHwalRoutine != null && isMooJeok == false)
@@ -221,22 +222,26 @@ public class LSH_PlayerState : MonoBehaviour
 
     public IEnumerator CountDown(float countDownNum)
     {
-        
-        
 
-        while (countDownNum <= 0f)
-        {
-            //숫자가 줄어듦, 그걸 표시해줌
+        while (true)
+        {            
+
+            if (countDownNum <= 0f)
+            {
+                //카운트다운 종료 후 게임 재개                
+                isUnPause = false;
+                GameUnPauseTMP.text = "";
+                playerState = PlayerState.Running;
+                break;
+            }
+
+            //숫자가 줄어듦, 그걸 표시해줌 -----> 근데 이상하게 줄어요......
             countDownNum -= 0.1f;
-            GameUnPauseTMP.text = (countDownNum).ToString(); //소수점 첫째자리까지로 바꿔야해요,,
             yield return new WaitForSecondsRealtime(0.1f);
+            GameUnPauseTMP.text = (countDownNum).ToString("F1");
+
         }
 
-        //카운트다운 종료 후 게임 재개
-        Time.timeScale = 1f;
-        isUnPause = false;
-        playerState = PlayerState.Running;
-        yield return null;
 
     }
 
@@ -257,7 +262,6 @@ public class LSH_PlayerState : MonoBehaviour
                 playerState = PlayerState.Running;
                 break;
             }
-
 
             //3초동안 플레이어 무적 숫자가 줄어듦, 표시할필요X
             muJeckSiGan -= 0.1f;
