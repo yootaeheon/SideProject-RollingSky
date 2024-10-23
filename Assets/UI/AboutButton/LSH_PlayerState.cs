@@ -1,8 +1,6 @@
 using System.Collections;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class LSH_PlayerState : MonoBehaviour
 {
@@ -19,7 +17,8 @@ public class LSH_PlayerState : MonoBehaviour
     [SerializeField] bool isDead;    // 플레이어가 피격을 입었을 경우입니다만, 아직 연결되지 않았습니다.
     [SerializeField] bool isUnPause; //일시정지를 풀었을때 3초 카운팅을 위해 만들었습니다. 얘가 T면 
     [SerializeField] bool isMooJeok; //플레이어가 죽었다가 이어하기 눌렀을때 입니다. 3초동안 아묻따 무적이 되고 또 냅다 풀립니다.
-    Coroutine unPauseRoutine;  // 3초짜리 코루틴 한개로 두 상황을 다 돌려요.
+    Coroutine unPauseRoutine;  // 일시정지 해제용 3초짜리 코루틴.
+    Coroutine BuHwalRoutine;  // 게임 이어하기용도 3초짜리 코루틴.
 
     [SerializeField] GameObject GameReadyUI;     //게임 시작전인 대기중에 계속 떠있는 UI
     [SerializeField] GameObject GameRunningUI;   //게임 시작부터 진행중에 계속 떠있는 UI
@@ -60,7 +59,7 @@ public class LSH_PlayerState : MonoBehaviour
         Debug.LogError("코루틴 작성했으나 테스트 안해봤어요. 컴퓨터 터짐 주의!"); // 181번째 줄에서 이어집니다.
         Debug.LogWarning("여유 되시는분들 계신다면 \n 10, 81-82, 192번째줄 수정해주셔도 됩니다");
         // 95번째 줄은 싱글톤 데이터와 연결 요청,
-        // 230째 줄은 무적기능 구현 개발 요청 이고요,
+        // 145번째, 230째 줄은 기능구현 요청이고,
         // 나머지는 전부 코드 설명이에요!!
 
     }
@@ -68,7 +67,7 @@ public class LSH_PlayerState : MonoBehaviour
     private void Start()
     {
         //게임 시작시 Ready상태로 고정
-        playerState = PlayerState.Ready;        
+        playerState = PlayerState.Ready;
     }
 
     private void Update()
@@ -83,7 +82,7 @@ public class LSH_PlayerState : MonoBehaviour
                 isDead = false;
                 isUnPause = false;
                 isMooJeok = false;
-                GameReadyUI.SetActive(true); 
+                GameReadyUI.SetActive(true);
                 GameRunningUI.SetActive(false);
                 GamePauseUI.SetActive(false);
                 GameClearUI.SetActive(false);
@@ -127,6 +126,8 @@ public class LSH_PlayerState : MonoBehaviour
 
             case PlayerState.ReStart:
                 //죽었다가 부활기회를 얻고 세이브 포인트에서 부터 이어서 진행하는 경우입니다. (이어하기)
+                GameoverUI.SetActive(false);
+                isDead = false;
                 isMooJeok = true;
                 break;
 
@@ -140,8 +141,9 @@ public class LSH_PlayerState : MonoBehaviour
 
 
         //플레이어 죽으면
-        if (isDead == true)
+        if (playerState == PlayerState.Running && isDead == true)
         {
+            //플레이어 터지는 모션 함수
             PlayerDead();
 
         }
@@ -149,23 +151,33 @@ public class LSH_PlayerState : MonoBehaviour
 
 
         //일시정지 해제시 코루틴
-        if (isUnPause == true)
+        if (playerState == PlayerState.Pause && isUnPause == true)
         {
+            Time.timeScale = 1f;
+            playerState = PlayerState.Running;
+            GameUnPauseTMP.enabled = true;
             unPauseRoutine = StartCoroutine(CountDown(3f));
         }
-        else if(unPauseRoutine != null && isUnPause == false)
+        else if (unPauseRoutine != null && isUnPause == false)
         {
             StopCoroutine(unPauseRoutine);
         }
 
+
+
         //이어하기 선택시 코루틴
         if (isMooJeok == true)
         {
-            unPauseRoutine = StartCoroutine(CountDown(3f));
+            Time.timeScale = 1f;
+            BuHwalRoutine = StartCoroutine(ReStartRoutine(3f));
+
         }
-        else if(unPauseRoutine != null && isMooJeok == false)
+        else if (BuHwalRoutine != null && isMooJeok == false)
         {
-            StopCoroutine(unPauseRoutine);
+
+            //게임 이어하기 선택시 부여받은 무적시간 종료 후 일반적인 게임 진행
+            StopCoroutine(BuHwalRoutine);
+            
         }
 
 
@@ -178,7 +190,7 @@ public class LSH_PlayerState : MonoBehaviour
     {
         if (isDead == false) return;
 
-        Time.timeScale = 0f;
+        playerState = PlayerState.Gameover;
 
     }
 
@@ -199,64 +211,63 @@ public class LSH_PlayerState : MonoBehaviour
 
     public void Resurrection()
     {
-        isMooJeok = true;
+        playerState = PlayerState.ReStart;
 
     }
+
+
 
 
 
     public IEnumerator CountDown(float countDownNum)
     {
+        
+        
 
-        if (playerState == PlayerState.UnPause)
+        while (countDownNum <= 0f)
         {
-            GameUnPauseTMP.enabled = true;
-
-            while (countDownNum <= 0f)
-            {
-                //숫자가 줄어듦, 그걸 표시해줌
-                countDownNum -= 0.1f;
-                GameUnPauseTMP.text = (countDownNum).ToString(); //소수점 첫째자리까지로 바꿔야해요,,
-                yield return new WaitForSecondsRealtime(3f);
-            }
-
-            //카운트다운 종료 후 게임 재개
-            Time.timeScale = 1f;
-            isUnPause = false;
-            playerState = PlayerState.Running;
-            yield return null;
-
+            //숫자가 줄어듦, 그걸 표시해줌
+            countDownNum -= 0.1f;
+            GameUnPauseTMP.text = (countDownNum).ToString(); //소수점 첫째자리까지로 바꿔야해요,,
+            yield return new WaitForSecondsRealtime(0.1f);
         }
-        else if (playerState == PlayerState.ReStart)
-        {
 
-            Time.timeScale = 1f;
-            isDead = false;
-            playerState = PlayerState.Running;
-
-            while (countDownNum <= 0f)
-            {
-                //Debug.LogWarning("기능 구현 부탁드립니다!");
-                Debug.Log("플레이어가 번쩍거리고 낙사제외 무적판정이에요.");
-
-                //3초동안 플레이어 무적 숫자가 줄어듦, 표시할필요X
-                countDownNum -= 0.1f;                
-                yield return new WaitForSecondsRealtime(3f);
-            }
-            //}
-
-            //게임 이어하기 선택시 부여받은 무적시간 종료 후 일반적인 게임 진행
-            //플레이어 무적상태를 해제해요
-            isMooJeok = false;
-            yield return null;
-
-        }
+        //카운트다운 종료 후 게임 재개
+        Time.timeScale = 1f;
+        isUnPause = false;
+        playerState = PlayerState.Running;
+        yield return null;
 
     }
 
 
-    
-    
+
+    public IEnumerator ReStartRoutine(float muJeckSiGan)
+    {
+        
+        while (true)
+        {
+            Debug.Log("플레이어가 번쩍거리고 낙사제외 무적판정이에요.");
+            //Debug.LogWarning("기능 구현 부탁드립니다!");
+
+            if (muJeckSiGan <= 0f)
+            {
+                //플레이어 무적상태를 해제해요
+                isMooJeok = false;
+                playerState = PlayerState.Running;
+                break;
+            }
+
+
+            //3초동안 플레이어 무적 숫자가 줄어듦, 표시할필요X
+            muJeckSiGan -= 0.1f;
+            yield return new WaitForSecondsRealtime(0.1f);
+
+        }
+
+
+    }
+
 
 
 }
