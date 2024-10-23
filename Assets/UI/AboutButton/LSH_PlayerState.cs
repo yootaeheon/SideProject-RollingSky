@@ -15,9 +15,9 @@ public class LSH_PlayerState : MonoBehaviour
     enum PlayerState { Ready, Running, Pause, UnPause, Clear, Gameover, ReStart, Quit };
     [SerializeField] PlayerState playerState;
 
-    [SerializeField] bool isDead;    // 플레이어가 피격을 입었을 경우입니다만, 아직 연결되지 않았습니다.
+    [SerializeField] bool isOver;    // 플레이어가 피격을 입었을 경우입니다만, 아직 플레이어쪽 스크립트와 연결되지 않았습니다.
     [SerializeField] bool isUnPause; //일시정지를 풀었을때 3초 카운팅을 위해 만들었습니다. 얘가 T면 
-    [SerializeField] bool isMooJeok; //플레이어가 죽었다가 이어하기 눌렀을때 입니다. 3초동안 아묻따 무적이 되고 또 냅다 풀립니다.
+    [SerializeField] bool isMooJeok; //게임이 한번 끝났는데 이어하기를 눌렀을때 입니다. 3초동안 아묻따 무적이 되고 또 냅다 풀립니다.
     Coroutine unPauseRoutine;  // 일시정지 해제용 3초짜리 코루틴.
     Coroutine BuHwalRoutine;  // 게임 이어하기용도 3초짜리 코루틴.
 
@@ -33,7 +33,7 @@ public class LSH_PlayerState : MonoBehaviour
     /*
      * <각 상태 설명>
      * 
-     * isDead:    플레이어 사망한 상황. (얘가 T라면 플레이어 상태를 게임오버로 교체함)
+     * isOver:    플레이어 피격시 상황. (얘가 T라면 플레이어 상태를 게임오버로 교체함)
      * isUnPause: 일시정지를 누른 상황. (얘가 T라면 3초 카운트가 시작됨, 코루틴 씀)
      * isMooJeok: 플레이어 무적인 상황. (얘가 T라면 3초동안 무적, 코루틴 씀)
      * 
@@ -58,9 +58,10 @@ public class LSH_PlayerState : MonoBehaviour
     private void Awake()
     {
         Debug.LogError("코루틴 혹시 예외처리가 덜 됐을수도 있어요. 컴퓨터 터짐 주의!!"); // 115, 170번째 줄에서 이어집니다.
-        Debug.LogWarning("여유 되시는분들 계신다면 \n 9, 77~78, 239번째줄 수정해주셔도 돼요");
+        Debug.LogWarning("읽어주세요! 기능구현 요청사항입니다.");
+        // 여유 되시는분들 계신다면 \n 9, 77~78, 239번째줄 수정해주셔도 돼요.. ㅠㅠ
         // 101번째 줄은 싱글톤 데이터와 연결 요청, 
-        // 148번째, 256번째 줄은 기능구현 요청이고,
+        // 18번째, 148번째, 256번째 줄은 기능구현 요청이고,
         // 나머지는 전부 코드 설명이에요!!
 
     }
@@ -81,7 +82,7 @@ public class LSH_PlayerState : MonoBehaviour
         {
             case PlayerState.Ready:
                 //"좌우로 스크롤하세요" <-이게 버튼역할, 버튼 누르면 playerState가 Running으로 넘어감                
-                isDead = false;
+                isOver = false;
                 isUnPause = false;
                 isMooJeok = false;
                 GameReadyUI.SetActive(true);
@@ -121,20 +122,20 @@ public class LSH_PlayerState : MonoBehaviour
                 break;
 
             case PlayerState.Gameover:
-                //게임오버시 유아이, 게임 포기 or 게임 이어하기를 선택할수 있어요.
+                //게임오버시 유아이, 게임 관두기 or 게임 이어하기를 선택할수 있어요.
                 GameoverUI.SetActive(true);
                 Time.timeScale = 0f;
                 break;
 
             case PlayerState.ReStart:
-                //죽었다가 부활기회를 얻고 세이브 포인트에서 부터 이어서 진행하는 경우입니다. (이어하기)
+                //겜 끝났다가 부활기회를 얻고 세이브 포인트에서 부터 이어서 진행하는 경우입니다. (이어하기)
                 GameoverUI.SetActive(false);
-                isDead = false;
+                isOver = false;
                 isMooJeok = true;
                 break;
 
             case PlayerState.Quit:
-                //여러 상황에서 게임을 포기하고 로비로 나가는 경우입니다. 로비씬을 불러옵니다.
+                //여러 상황에서 게임을 관두고 로비로 나가는 경우입니다. 로비씬을 불러옵니다.
                 Canvas.GotoGame("LSH_Scene_Menu");
                 break;
 
@@ -142,11 +143,11 @@ public class LSH_PlayerState : MonoBehaviour
         }
 
 
-        //플레이어 죽으면
-        if (playerState == PlayerState.Running && isDead == true)
+        //플레이어가 장애물에 맞거나 떨어짐
+        if (playerState == PlayerState.Running && isOver == true)
         {
-            ///기능구현: 플레이어 터지는 모션 함수 제작 부탁드립니다!
-            PlayerDead();
+            ///기능구현: 공이 터지는 모션 함수 제작 부탁드립니다!
+            GameOver();
 
         }
 
@@ -188,9 +189,9 @@ public class LSH_PlayerState : MonoBehaviour
 
 
 
-    public void PlayerDead()
+    public void GameOver()
     {
-        if (isDead == false) return;
+        if (isOver == false) return;
 
         playerState = PlayerState.Gameover;
 
@@ -253,7 +254,7 @@ public class LSH_PlayerState : MonoBehaviour
         
         while (true)
         {
-            Debug.Log("플레이어가 번쩍거리고 낙사제외 무적판정이에요.");
+            Debug.Log("플레이어가 번쩍거리고요, 떨어지는거 빼면 무적판정이에요.");
             ///기능구현: 무적 애니메이션과 기능 구현 부탁드립니다!
 
             if (muJeckSiGan <= 0f)
