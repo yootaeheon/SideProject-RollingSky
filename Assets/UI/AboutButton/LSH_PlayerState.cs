@@ -1,7 +1,7 @@
 using System.Collections;
 using TMPro;
 using UnityEngine;
-using static Unity.Burst.Intrinsics.X86.Avx;
+
 
 public class LSH_PlayerState : MonoBehaviour
 {
@@ -57,13 +57,14 @@ public class LSH_PlayerState : MonoBehaviour
 
     private void Awake()
     {
-        Debug.LogError("코루틴 작성했으나 테스트 안해봤어요. 컴퓨터 터짐 주의!"); // 181번째 줄에서 이어집니다.
-        Debug.LogWarning("여유 되시는분들 계신다면 \n 10, 81-82, 192번째줄 수정해주셔도 됩니다");
-        // 95번째 줄은 싱글톤 데이터와 연결 요청,
-        // 145번째, 230째 줄은 기능구현 요청이고,
+        Debug.LogError("코루틴 혹시 예외처리가 덜 됐을수도 있어요. 컴퓨터 터짐 주의!!"); // 115, 170번째 줄에서 이어집니다.
+        Debug.LogWarning("여유 되시는분들 계신다면 \n 9, 77~78, 239번째줄 수정해주셔도 돼요");
+        // 101번째 줄은 싱글톤 데이터와 연결 요청, 
+        // 148번째, 256번째 줄은 기능구현 요청이고,
         // 나머지는 전부 코드 설명이에요!!
 
     }
+
 
     private void Start()
     {
@@ -73,8 +74,8 @@ public class LSH_PlayerState : MonoBehaviour
 
     private void Update()
     {
-        //상태를 계속 추적해야해서 Update로 놓긴 했지만,
-        //이벤트-콜백 등 형태로 바꿀 필요가 있다면 의견 주시거나, 직접 바꾸셔도 됩니다!
+        ///상태를 계속 추적해야해서 Update로 놓긴 했지만,
+        ///이벤트-콜백 등 형태로 바꿀 필요가 있다면 의견 주시거나, 직접 바꿔주셔도 됩니다!
 
         switch (playerState)
         {
@@ -97,7 +98,7 @@ public class LSH_PlayerState : MonoBehaviour
                 GameReadyUI.SetActive(false);
                 GameRunningUI.SetActive(true);                
                 //GameprogressTMP.text = ""; 
-                //Debug.LogWarning("싱글톤에서 게임 퍼센테이지 연동 부탁드립니다!");
+                ///싱글톤: 싱글톤에서 게임 퍼센테이지 연동 부탁드립니다!
                 Time.timeScale = 1f;
                 break;
 
@@ -144,14 +145,14 @@ public class LSH_PlayerState : MonoBehaviour
         //플레이어 죽으면
         if (playerState == PlayerState.Running && isDead == true)
         {
-            //플레이어 터지는 모션 함수
+            ///기능구현: 플레이어 터지는 모션 함수 제작 부탁드립니다!
             PlayerDead();
 
         }
 
 
 
-        //일시정지 해제시 코루틴
+        //일시정지 해제시 코루틴, 224번째 줄에서 이어집니다.
         if (isUnPause == true)
         {
             unPauseRoutine = StartCoroutine(CountDown(3.0f));
@@ -166,7 +167,7 @@ public class LSH_PlayerState : MonoBehaviour
 
 
 
-        //이어하기 선택시 코루틴
+        //이어하기 선택시 코루틴, 251번째 줄에서 이어집니다.
         if (isMooJeok == true)
         {
             Time.timeScale = 1f;
@@ -235,7 +236,7 @@ public class LSH_PlayerState : MonoBehaviour
                 break;
             }
 
-            //숫자가 줄어듦, 그걸 표시해줌 -----> 근데 이상하게 줄어요......
+            ///숫자가 소수점 1째자리 단위로 줄어듦, 그걸 표시해줌 -----> 근데 이상하게 줄어요......
             countDownNum -= 0.1f;
             yield return new WaitForSecondsRealtime(0.1f);
             GameUnPauseTMP.text = (countDownNum).ToString("F1");
@@ -253,7 +254,7 @@ public class LSH_PlayerState : MonoBehaviour
         while (true)
         {
             Debug.Log("플레이어가 번쩍거리고 낙사제외 무적판정이에요.");
-            //Debug.LogWarning("기능 구현 부탁드립니다!");
+            ///기능구현: 무적 애니메이션과 기능 구현 부탁드립니다!
 
             if (muJeckSiGan <= 0f)
             {
